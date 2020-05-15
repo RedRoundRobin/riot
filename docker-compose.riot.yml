@@ -1,0 +1,120 @@
+#
+#  Version 1
+#
+#      ___         __  ___                    __  ___       __   _    
+#    / _ \___ ___/ / / _ \___  __ _____  ___/ / / _ \___  / /  (_)__ 
+#   / , _/ -_) _  / / , _/ _ \/ // / _ \/ _  / / , _/ _ \/ _ \/ / _ \
+#  /_/|_|\__/\_,_/ /_/|_|\___/\_,_/_//_/\_,_/ /_/|_|\___/_.__/_/_//_/
+#  
+#
+
+version: '3'
+
+networks:
+  kafka-net:
+    driver: bridge
+
+services:
+  api:
+    container_name: thirema-api
+    build: ./api
+    networks:
+      - kafka-net
+    ports:
+      - "9999:9999"
+
+  telegram_bot:
+    container_name: thirema-telegram-bot
+    build: ./telegram
+    networks:
+      - kafka-net
+    ports:
+      - "3000:3000"
+
+  gateway:
+    container_name: thirema-gateway
+    build: ./gateway
+    networks:
+      - kafka-net    
+
+  webapp:
+    container_name: thirema-webapp
+    build: ./webapp
+    networks:
+      - kafka-net
+    ports:
+      - "80:8000"
+  
+  timescale:
+    container_name: db-timescale
+    build: ./database/Timescale
+    networks:
+      - kafka-net
+    ports:
+      - "3456:5432"
+    volumes:
+      - 'timescale_data:/var/lib/postgresql/data'
+  
+  postgres:
+    container_name: db-postgre
+    build: ./database/Postgres
+    networks:
+      - kafka-net
+    ports:
+      - "6543:5432"
+    volumes:  
+      - 'postgres_data:/var/lib/postgresql/data'
+
+  zookeeper:
+    container_name: kafka-zookeeper
+    image: 'bitnami/zookeeper:3'
+    networks:
+      - kafka-net
+    ports: 
+      - '2181:2181'
+    volumes: 
+      - 'zookeeper_data:/bitnami'
+    environment: 
+      - ALLOW_ANONYMOUS_LOGIN=yes  
+
+  kafka:
+    container_name: kafka-core
+    image: 'bitnami/kafka:2'
+    networks:
+      - kafka-net
+    ports: 
+      - '9092:9092'
+      - '29092:29092'
+      - '29094:29094'
+    volumes: 
+      - 'kafka_data:/bitnami'
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_EXT:PLAINTEXT,LISTENER_INT:PLAINTEXT,REMOTE_EXT:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=LISTENER_EXT://kafka:9092,LISTENER_INT://kafka:29092,REMOTE_EXT://kafka:29094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=LISTENER_EXT://localhost:9092,LISTENER_INT://kafka-core:29092,REMOTE_EXT://core.host.redroundrobin.site:29094
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=LISTENER_INT
+    depends_on:
+      - zookeeper  
+
+  data_collector:
+    container_name: thirema-data-collector
+    build: ./kafka-db
+    networks:
+      - kafka-net
+    depends_on:
+      - kafka 
+      - postgres
+      - timescale    
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+  timescale_data:
+    driver: local
+  postgres_data:
+    driver: local 
+    
