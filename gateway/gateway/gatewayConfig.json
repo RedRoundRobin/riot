@@ -1,0 +1,66 @@
+{
+  "maxStoredPackets":9999,
+  "maxStoringTime":5000,
+  "devices":  [
+    {
+      "deviceId":1,
+      "frequency": 2,
+      "sensors":[
+        {
+          "sensorId":1,
+          "cmdEnabled" : false
+        },
+        {
+          "sensorId":3,
+          "cmdEnabled" : false
+        }
+      ]
+    },
+    {
+      "deviceId":2,
+      "frequency": 2,
+      "sensors":[
+        {
+          "sensorId":1,
+          "cmdEnabled" : false
+        },
+        {
+          "sensorId":2,
+          "cmdEnabled" : false
+        }
+      ]
+    },
+    {
+      "deviceId":4,
+      "frequency": 2,
+      "sensors":[
+        {
+          "sensorId":1,
+          "cmdEnabled" : false
+        },
+        {
+          "sensorId":2,
+          "cmdEnabled" : false
+        }
+      ]
+    },
+    {
+      "deviceId":5,
+      "frequency": 2,
+      "sensors":[
+        {
+          "sensorId":1,
+          "cmdEnabled" : false
+        },
+        {
+          "sensorId":2,
+          "cmdEnabled" : false
+        },
+        {
+          "sensorId":3,
+          "cmdEnabled": true
+        }
+      ]
+    }
+  ]
+}
