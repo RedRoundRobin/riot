@@ -81,7 +81,7 @@ then
 
 elif [ $1 = "init" ]
 then
-    if [ -f "./riot/riot-installed.lock" ]
+    if [ -f "riot/riot-installed.lock" ]
     then 
         errormex "È già presente un'installazione di RIoT. Esegui prima [remove], oppure cancella la cartella (riot/) prima di continuare."
         exit 1
@@ -96,9 +96,9 @@ then
     cp -r telegram riot/telegram
     cp -r webapp riot/webapp
     cp -r database riot/database
-    cp ./docker-compose.riot.yml riot/
+    cp docker-compose.riot.yml riot/
    # mv ./riot/kafka-db/kafka/* riot/
-    touch ./riot/riot-installed.lock
+    touch riot/riot-installed.lock
     echo "${ORANGE}[Mr. Wolf] ${GREEN} Componenti copiate con successo!"
     dockercompose_up 
     finalmessage
@@ -106,7 +106,7 @@ then
 
 elif [ $1 = "status" ]
 then
-    if [ ! -f "./riot/riot-installed.lock" ]
+    if [ ! -f "riot/riot-installed.lock" ]
     then 
         errormex "Nessuna installazione del prodotto trovata."
         exit 1
@@ -117,7 +117,7 @@ then
 
 elif [ $1 = "start" ]
 then
-    if [ ! -f "./riot/riot-installed.lock" ]
+    if [ ! -f "riot/riot-installed.lock" ]
     then 
         errormex "Nessuna installazione del prodotto trovata."
         exit 1
@@ -129,7 +129,7 @@ then
 
 elif [ $1 = "stop" ]
 then 
-    if [ ! -f "./riot/riot-installed.lock" ]
+    if [ ! -f "riot/riot-installed.lock" ]
     then 
         errormex "Nessuna installazione del prodotto trovata."
         exit 1
@@ -141,7 +141,7 @@ then
 
 elif [ $1 = "remove" ]
 then 
-    if [ ! -f "./riot/riot-installed.lock" ]
+    if [ ! -f "riot/riot-installed.lock" ]
     then 
         errormex "Nessuna installazione del prodotto trovata."
         exit 1
@@ -152,7 +152,7 @@ then
     then
         startingmessage "Stop e rimozione dei servizi RIoT dalla macchina.."
         dockercompose_down
-        rm -rf ./riot/   
+        rm -rf riot/   
         finalmessage  
     else
         echo "Pericolo scampato :)"

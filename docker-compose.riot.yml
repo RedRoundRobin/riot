@@ -17,7 +17,7 @@ networks:
 services:
   api:
     container_name: thirema-api
-    build: ./api
+    build: api
     networks:
       - kafka-net
     ports:
@@ -25,7 +25,7 @@ services:
 
   telegram_bot:
     container_name: thirema-telegram-bot
-    build: ./telegram
+    build: telegram
     networks:
       - kafka-net
     ports:
@@ -33,13 +33,13 @@ services:
 
   gateway:
     container_name: thirema-gateway
-    build: ./gateway
+    build: gateway
     networks:
       - kafka-net    
 
   webapp:
     container_name: thirema-webapp
-    build: ./webapp
+    build: webapp
     networks:
       - kafka-net
     ports:
@@ -47,7 +47,7 @@ services:
   
   timescale:
     container_name: db-timescale
-    build: ./database/Timescale
+    build: database/Timescale
     networks:
       - kafka-net
     ports:
@@ -57,7 +57,7 @@ services:
   
   postgres:
     container_name: db-postgre
-    build: ./database/Postgres
+    build: database/Postgres
     networks:
       - kafka-net
     ports:
@@ -100,7 +100,7 @@ services:
 
   data_collector:
     container_name: thirema-data-collector
-    build: ./kafka-db
+    build: kafka-db
     networks:
       - kafka-net
     depends_on:
