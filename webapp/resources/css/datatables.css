@@ -1,0 +1,12 @@
+
+/*
+    Datatables for Bootstrap 4
+    Source: https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.css
+ */
+
+table.table th,
+table.table td,
+table.dataTable tbody th,
+table.dataTable tbody td {
+   padding: 8px 10px;
+}

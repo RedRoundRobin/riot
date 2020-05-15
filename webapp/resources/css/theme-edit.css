@@ -1,0 +1,119 @@
+/*
+    Webapp theme edit from Bootstrap
+    Project ThiReMa
+ */
+
+@font-face {
+    font-family: 'airstrip';
+    src: url('../webfonts/airstrip.woff2') format('woff2'),
+    url('../webfonts/airstrip.woff') format('woff'),
+    url('../webfonts/airstrip.ttf') format('truetype');
+}
+
+.bg-login-image{
+    background-image: url("../images/logo.png");
+    background-size: 330px;
+    background-repeat: no-repeat;
+    background-color: #4c4e59;
+}
+
+.form-codice-tfa{
+    text-align: center;
+    font-size: 1.1rem !important;
+}
+
+.breadcrumb{
+    background-color: transparent !important;
+}
+
+/*
+    DataTable with centered pagination
+ */
+
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    float: none !important;
+    text-align: center !important;
+}
+
+/*
+table.dataTable.no-footer {
+    border-color: #858796 !important;
+}
+*/
+
+@media only screen and (min-width: 768px) {
+    .table-responsive {
+        overflow-x: hidden;
+    }
+}
+
+.logic-id::before {
+    content: '\0023';
+    color: #7bb0ff;
+}
+
+.real-id::before {
+    content: '\0040';
+    color: #ff8362;
+}
+
+
+/*
+    ThiReMa logo CSS
+ */
+
+.thirema-logo-icon{
+    font-size: 1.5em;
+    margin-right: 0.1em;
+}
+
+.thirema-logo-special-font{
+    font-family: "airstrip", sans-serif;
+    font-size: 2em;
+    font-weight: normal;
+}
+
+.thirema-logo-color-light{
+    background: rgb(255,255,255);
+    background: -moz-linear-gradient(top,  rgb(255,255,255) 0%, rgb(247,247,247) 100%);
+    background: -webkit-linear-gradient(top,  rgb(255,255,255) 0%,rgb(247,247,247) 100%);
+    background: linear-gradient(to bottom,  rgb(255,255,255) 0%,rgb(247,247,247) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7f7f7',GradientType=0 );
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.thirema-logo-color-blue{
+    background: rgb(123,164,219);
+    background: -moz-linear-gradient(top,  rgb(123,164,219) 0%, rgb(99,150,219) 100%);
+    background: -webkit-linear-gradient(top,  rgb(123,164,219) 0%,rgb(99,150,219) 100%);
+    background: linear-gradient(to bottom,  rgb(123,164,219) 0%,rgb(99,150,219) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7ba4db', endColorstr='#6396db',GradientType=0 );
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    margin-right: -0.035em;
+    font-style: italic;
+}
+
+.stickToBottom {
+    bottom: 0;
+    position: absolute;
+}
+
+.thirema-logo-subtext {
+    margin-top: 17px;
+    margin-left: -10px;
+    font-size: 7pt;
+    color: #ec6254;
+}
+
+.thirema-logo-subtext-mod{
+    color: #1cc88a !important;
+}

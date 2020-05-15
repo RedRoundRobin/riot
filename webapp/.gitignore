@@ -1,0 +1,16 @@
+.idea/*
+build/*
+node_modules/*
+vendor/*
+coverage/*
+
+public/css
+public/js
+public/webfonts
+public/images
+public/mix-manifest.json
+
+.php_cs.cache
+
+fix.sh
+.DS_Store
